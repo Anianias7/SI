@@ -10,11 +10,11 @@ from swap_two_mutation import mutate
 from roullete_selection import roulette
 
 
-file_name = "had20.txt"
-pop_size = 100
+file_name = "had16.txt"
+pop_size = 300
 gen = 100
 Px = 70
-Pm = 0
+Pm = 1
 Tour = 5
 amount_of_experiments = 5
 num_of_individual_genes = file.get_number_of_cols(file_name)
@@ -33,7 +33,7 @@ for i in range(amount_of_experiments):
 
     for nth_gen in range(1, gen):
         parent_population = roulette(evaluated_population)
-        # parent_population = tournament.tournament_selection(evaluated_population, Tour)
+        parent_population = tournament.tournament_selection(evaluated_population, Tour)
         parent_population = haf.crossover(parent_population, Px, distance, flow)
         parent_population = mutate(parent_population, Pm, distance, flow)
         evaluated_generation = pop.evaluate_generation(parent_population, nth_gen)
